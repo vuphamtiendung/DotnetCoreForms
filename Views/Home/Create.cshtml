@@ -17,27 +17,35 @@
   </head>
 
   <body>
-        <div class="col-center">
-            <form asp-controller="Home" asp-action="Create" method="post">
-                <div class="mb-3">
-                <label asp-for="Name" class="form-label">Name</label>
-                <input type="text" class="form-control"  asp-for="Name">
-                </div>
+        <div class="container">
+          <div class="row">
+            <div class="col"></div>
+            <!------------------------------------------------------------------->
+            <div class="col">
+              <form asp-controller="Home", asp-action="Create" method="post">
+                  <div class="mb-3">
+                    <label class="form-label" asp-for="Name">Name</label>
+                    <input class="form-control" asp-for="Name">
+                  </div>
 
-                <div class="mb-3">
-                <label asp-for="Rate" class="form-label">Rate</label>
-                <input type="text" class="form-control" asp-for="Rate">
-                </div>
+                  <div class="mb-3">
+                    <label class="form-label" asp-for="Rate">Rate</label>
+                    <input class="form-control" asp-for="Rate" asp-format="{0:N0}">
+                  </div>
 
-                <div class="mb-3">
-                <label asp-for="Rating" class="form-label">Rating</label>
-                <input type="text" class="form-control"  asp-for="Rating">
-                </div>
+                  <div class="mb-3">
+                    <label  class="form-label" asp-for="Rating">Rating</label>
+                    <input class="form-control" asp-for="Rating">
+                  </div>
 
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            </form>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+            <!-------------------------------------------------------------------->
+            <div class="col"></div>
+          </div>
         </div>
-      
   </body>
 
 </html>
