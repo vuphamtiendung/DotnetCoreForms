@@ -1,8 +1,7 @@
-﻿using DotnetCoreForms.Models;
+using DotnetCoreForms_004.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 
-namespace DotnetCoreForms.Controllers
+namespace DotnetCoreForms_004.Controllers
 {
     public class HomeController : Controller
     {
@@ -14,22 +13,27 @@ namespace DotnetCoreForms.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            // TODO: gán bất kì giá trị mặc dịnh nào & gủi lại cho view
-            var model = new ProductEditModel(); 
+            var model = new ProductEditModel();
             return View(model);
         }
-        
+
         [HttpPost]
         public IActionResult Create(ProductEditModel editModel)
         {
-            string message = string.Empty;
+            var message = string.Empty;
             if (ModelState.IsValid)
             {
-                message = "Product: " + editModel.Name + ". Rate = " + editModel.Rate + ". Rating = " + editModel.Rating;
+                // TODO: Check product name exist
+                if (editModel.Name == "test")
+                {
+                    ModelState.AddModelError(" ", "This product name was existed");
+                    return View(editModel);
+                }
+                message = "Product name: " + editModel.Name + ". Rate: " + editModel.Rate + ". Rating: " + editModel.Rating + " Create Successfully";
             }
             else
             {
-                message = "Failed to create the product. Please try again";
+                return View(editModel);
             }
             return Content(message);
         }
